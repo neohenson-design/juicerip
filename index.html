@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JuiceRip</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo">JuiceRip</div>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Categories</a>
+      <a href="#">Top Game</a>
+      <a href="#">Recent Updates</a>
+      <a href="#">Discord</a>
+    </nav>
+    <div class="search-container">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Search games...">
+    </div>
+    <div class="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
+  </header>
+
+  <div class="mobile-menu">
+    <a href="#">Home</a>
+    <a href="#">Categories</a>
+    <a href="#">Top Game</a>
+    <a href="#">Recent Updates</a>
+    <a href="#">Discord</a>
+    <div class="search-container mobile">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInputMobile" placeholder="Search games...">
+    </div>
+  </div>
+
+  <div class="container">
+    <aside>
+      <button class="active">All Games</button>
+      <button>Action</button>
+      <button>Racing</button>
+      <button>Strategy</button>
+      <button>Adventure</button>
+    </aside>
+
+    <main>
+      <div class="featured">
+        <div class="card modal-trigger">
+          <img src="images/Grand_Theft_Auto_IV_cover.jpg" alt="GTA IV">
+          <div class="label">GTA IV</div>
+        </div>
+        <div class="card modal-trigger">
+          <img src="images/horizon5.jpg" alt="Horizon 5">
+          <div class="label">Horizon 5</div>
+        </div>
+        <div class="card modal-trigger">
+          <img src="images/need-for-speed.jpg" alt="NFS">
+          <div class="label">NFS</div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Recently Added</h2>
+      <div class="grid" id="gameGrid">
+        <div class="small-card modal-trigger" data-title="Minecraft"><img src="images/minecraft.jpg" alt="Minecraft"></div>
+        <div class="small-card modal-trigger" data-title="CSGN"><img src="images/csgo.jpg" alt="CSGN"></div>
+        <div class="small-card modal-trigger" data-title="Fortnite"><img src="images/fortnite.jpg" alt="Fortnite"></div>
+        <div class="small-card modal-trigger" data-title="Genshin Impact"><img src="images/genshin.jpg" alt="Genshin Impact"></div>
+        <div class="small-card modal-trigger" data-title="Call of Duty"><img src="images/cod.jpg" alt="Call of Duty"></div>
+        <div class="small-card modal-trigger" data-title="Among Us"><img src="images/us.jpg" alt="Among Us"></div>
+        <div class="small-card modal-trigger" data-title="Delta Force"><img src="images/delta.jpg" alt="Delta Force"></div>
+        <div class="small-card modal-trigger" data-title="Apex Legends"><img src="images/apex.jpg" alt="Apex Legends"></div>
+        <div class="small-card modal-trigger" data-title="League of Legends"><img src="images/lol.jpg" alt="League of Legends"></div>
+        <div class="small-card modal-trigger" data-title="Dota 2"><img src="images/dota.jpg" alt="Dota 2"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    
+    const searchInput = document.getElementById('searchInput');
+    const searchInputMobile = document.getElementById('searchInputMobile');
+    const games = document.querySelectorAll('.small-card');
+
+    function filterGames(query) {
+      const q = query.toLowerCase();
+      games.forEach(game => {
+        const title = (game.getAttribute('data-title') || '').toLowerCase();
+        game.style.display = title.includes(q) ? 'block' : 'none';
+      });
+    }
+    searchInput.addEventListener('input', () => filterGames(searchInput.value));
+    searchInputMobile.addEventListener('input', () => filterGames(searchInputMobile.value));
+
+    
+    document.querySelector('.hamburger').addEventListener('click', () => {
+      document.querySelector('.mobile-menu').classList.toggle('active');
+    });
+
+  </script>
+</body>
+</html>
